@@ -6,7 +6,7 @@ const jwt = require("jsonwebtoken");
 
 authRouter.get("/", (req, res) => {
   res.json({
-    message: "Hello from Node Server, use /login or /register to regsiter!",
+    message: "Hello from Node Server, use /login or /register to register!",
   });
 });
 
