@@ -1,5 +1,5 @@
 const express = require("express");
-const server = express();
+const app = express();
 const bodyParser = require("body-parser");
 const router = require("./router");
 const dbConnect = require("./db/dbConnect");
@@ -9,7 +9,7 @@ const authRouter = require("./router/authRouter");
 dbConnect();
 
 // handle CORS
-server.use((req, res, next) => {
+app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
     "Access-Control-Allow-Headers",
@@ -28,10 +28,10 @@ process.on("uncaughtException", (err) => {
   process.exit(1);
 });
 // configure body-parser
-server.use(bodyParser.json());
-server.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
-server.use("/", authRouter);
-server.use("/api", router);
+app.use("/", authRouter);
+app.use("/api", router);
 
-module.exports = server;
+module.exports = app;
