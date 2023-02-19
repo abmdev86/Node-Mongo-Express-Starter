@@ -5,7 +5,9 @@ const authRouter = express.Router();
 const jwt = require("jsonwebtoken");
 
 authRouter.get("/", (req, res) => {
-  res.json({ message: "Hello from server!" });
+  res.json({
+    message: "Hello from Node Server, use /login or /register to regsiter!",
+  });
 });
 
 authRouter.post("/register", (req, res) => {
