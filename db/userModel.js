@@ -11,3 +11,6 @@ const UserSchema = new mongoose.Schema({
     unique: false,
   },
 });
+
+//create a user table or collection if there is no table with that name already.
+module.exports = mongoose.model.Users || mongoose.model("Users", UserSchema);
