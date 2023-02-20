@@ -49,6 +49,7 @@ authRouter.post("/register", (req, res) => {
 });
 
 authRouter.post("/login", (req, res) => {
+  res.header("Access-Control-Allow-Origin", "*");
   const email = req.body.email;
   const password = req.body.password;
 
