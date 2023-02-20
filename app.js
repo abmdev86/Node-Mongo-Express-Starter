@@ -4,9 +4,10 @@ const bodyParser = require("body-parser");
 const router = require("./router");
 const dbConnect = require("./db/dbConnect");
 const authRouter = require("./router/authRouter");
-
+const timeout = require("connect-timeout");
 //execute db connection
 dbConnect();
+app.use(timeout("15s"));
 
 // handle CORS
 app.use((req, res, next) => {
@@ -19,7 +20,7 @@ app.use((req, res, next) => {
     "Access-Control-Allow-Methods",
     "GET, POST, PUT, DELETE, PATCH, OPTIONS"
   );
-  next();
+  if (!req.timedout) next();
 });
 
 process.on("uncaughtException", (err) => {
